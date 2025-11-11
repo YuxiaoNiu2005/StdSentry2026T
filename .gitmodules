@@ -23,3 +23,6 @@
 [submodule "src/sdformat_tools"]
 	path = src/sdformat_tools
 	url = https://github.com/gezp/sdformat_tools.git
+[submodule "src/standard_robot_pp_ros2"]
+	path = src/standard_robot_pp_ros2
+	url = https://github.com/YuxiaoNiu2005/standard_robot_pp_ros2.git
