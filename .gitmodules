@@ -26,3 +26,9 @@
 [submodule "src/standard_robot_pp_ros2"]
 	path = src/standard_robot_pp_ros2
 	url = https://github.com/YuxiaoNiu2005/standard_robot_pp_ros2.git
+[submodule "src/auto_aim_interfaces"]
+	path = src/auto_aim_interfaces
+	url = https://github.com/YuxiaoNiu2005/auto_aim_interfaces.git
+[submodule "src/pb_rm_interfaces"]
+	path = src/pb_rm_interfaces
+	url = https://github.com/YuxiaoNiu2005/pb_rm_interfaces.git
