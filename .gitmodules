@@ -5,6 +5,7 @@
 [submodule "src/pb2025_sentry_nav"]
 	path = src/pb2025_sentry_nav
 	url = https://github.com/YuxiaoNiu2005/pb2025_sentry_nav.git
+	branch = main
 [submodule "src/rmoss_core"]
 	path = src/rmoss_core
 	url = https://github.com/SMBU-PolarBear-Robotics-Team/rmoss_core.git
