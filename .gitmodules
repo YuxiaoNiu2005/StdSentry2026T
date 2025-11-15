@@ -32,3 +32,6 @@
 [submodule "src/pb_rm_interfaces"]
 	path = src/pb_rm_interfaces
 	url = https://github.com/YuxiaoNiu2005/pb_rm_interfaces.git
+[submodule "src/joint_state_publisher"]
+	path = src/joint_state_publisher
+	url = https://github.com/YuxiaoNiu2005/joint_state_publisher.git
