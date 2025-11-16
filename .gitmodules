@@ -9,30 +9,40 @@
 [submodule "src/rmoss_core"]
 	path = src/rmoss_core
 	url = https://github.com/SMBU-PolarBear-Robotics-Team/rmoss_core.git
+	branch = humble
 [submodule "src/rmoss_gazebo"]
 	path = src/rmoss_gazebo
 	url = https://github.com/SMBU-PolarBear-Robotics-Team/rmoss_gazebo.git
+	branch = humble
 [submodule "src/rmoss_gz_resources"]
 	path = src/rmoss_gz_resources
 	url = https://github.com/SMBU-PolarBear-Robotics-Team/rmoss_gz_resources.git
+	branch = humble
 [submodule "src/rmoss_interfaces"]
 	path = src/rmoss_interfaces
 	url = https://github.com/SMBU-PolarBear-Robotics-Team/rmoss_interfaces.git
+	branch = humble
 [submodule "src/rmu_gazebo_simulator"]
 	path = src/rmu_gazebo_simulator
 	url = https://github.com/YuxiaoNiu2005/rmu_gazebo_simulator.git
+	branch = main
 [submodule "src/sdformat_tools"]
 	path = src/sdformat_tools
 	url = https://github.com/gezp/sdformat_tools.git
+	branch = galactic
 [submodule "src/standard_robot_pp_ros2"]
 	path = src/standard_robot_pp_ros2
 	url = https://github.com/YuxiaoNiu2005/standard_robot_pp_ros2.git
+	branch = main
 [submodule "src/auto_aim_interfaces"]
 	path = src/auto_aim_interfaces
 	url = https://github.com/YuxiaoNiu2005/auto_aim_interfaces.git
+	branch = main
 [submodule "src/pb_rm_interfaces"]
 	path = src/pb_rm_interfaces
 	url = https://github.com/YuxiaoNiu2005/pb_rm_interfaces.git
+	branch = main
 [submodule "src/joint_state_publisher"]
 	path = src/joint_state_publisher
 	url = https://github.com/YuxiaoNiu2005/joint_state_publisher.git
+	branch = ros2
