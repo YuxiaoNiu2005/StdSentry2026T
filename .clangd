@@ -1,5 +1,10 @@
 CompileFlags:
-  Add: [-Wno-unused-includes]
+  CompilationDatabase: build/
+  Add: 
+    - -Wno-unused-includes
+    - -I/opt/ros/humble/include
+    - -I/opt/ros/humble/include/nav2_msgs
+    - -I/home/niuyuxiao/StdSentry2026T/install/pb_rm_interfaces/include
+    - -I/home/niuyuxiao/StdSentry2026T/install/pb_rm_interfaces/include/pb_rm_interfaces
 Diagnostics:
   UnusedIncludes: None
-  MissingIncludes: None
