@@ -46,3 +46,7 @@
 	path = src/joint_state_publisher
 	url = https://github.com/YuxiaoNiu2005/joint_state_publisher.git
 	branch = ros2
+[submodule "src/sentry_nav_controller"]
+	path = src/sentry_nav_controller
+	url = https://github.com/YuxiaoNiu2005/sentry_nav_controller.git
+	branch = main
