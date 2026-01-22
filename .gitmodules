@@ -50,3 +50,11 @@
 	path = src/sentry_nav_controller
 	url = https://github.com/YuxiaoNiu2005/sentry_nav_controller.git
 	branch = main
+[submodule "src/pb2025_rm_vision"]
+	path = src/pb2025_rm_vision
+	url = https://github.com/YuxiaoNiu2005/pb2025_rm_vision.git
+	branch = main
+[submodule "src/ros2_mindvision_camera"]
+	path = src/ros2_mindvision_camera
+	url = https://github.com/YuxiaoNiu2005/ros2_mindvision_camera.git
+	branch = main
