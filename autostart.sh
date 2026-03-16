@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 
 ##############################################
@@ -7,7 +6,6 @@
 # 停止方式：直接关闭对应的终端窗口即可
 ##############################################
 
-# 获取脚本所在目录
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 echo "========================================"
@@ -34,155 +32,47 @@ fi
 echo "使用终端: $TERMINAL"
 echo ""
 
-# 1. 启动串口通信（裁判系统）
+# 在新终端窗口中启动 ROS2 进程
+# 用法: launch_in_terminal <窗口标题> <ros2 launch 命令>
+launch_in_terminal() {
+    local title="$1"
+    local ros_cmd="$2"
+    local script="cd $SCRIPT_DIR && source install/setup.bash && $ros_cmd; exec bash"
+
+    case "$TERMINAL" in
+        gnome-terminal)
+            gnome-terminal --title="$title" -- bash -c "$script" &
+            ;;
+        xfce4-terminal)
+            xfce4-terminal --title="$title" -e "bash -c \"$script\"" &
+            ;;
+        konsole)
+            konsole --title="$title" -e bash -c "$script" &
+            ;;
+        *)
+            xterm -T "$title" -e "bash -c \"$script\"" &
+            ;;
+    esac
+}
+
 echo "[1/4] 启动串口通信系统..."
-if [ "$TERMINAL" = "gnome-terminal" ]; then
-    gnome-terminal --title="串口通信 - Serial Comm" -- bash -c "
-        cd '$SCRIPT_DIR'
-        source install/setup.bash
-        echo '========================================='
-        echo '串口通信系统 - Serial Communication'
-        echo '========================================='
-        ros2 launch standard_robot_pp_ros2 standard_robot_pp_ros2.launch.py
-        exec bash
-    " &
-elif [ "$TERMINAL" = "xfce4-terminal" ]; then
-    xfce4-terminal --title="串口通信 - Serial Comm" -e "bash -c '
-        cd \"$SCRIPT_DIR\"
-        source install/setup.bash
-        echo \"串口通信系统启动中...\"
-        ros2 launch standard_robot_pp_ros2 standard_robot_pp_ros2.launch.py
-        exec bash
-    '" &
-elif [ "$TERMINAL" = "konsole" ]; then
-    konsole --title="串口通信 - Serial Comm" -e bash -c "
-        cd '$SCRIPT_DIR'
-        source install/setup.bash
-        ros2 launch standard_robot_pp_ros2 standard_robot_pp_ros2.launch.py
-        exec bash
-    " &
-else
-    xterm -T "串口通信 - Serial Comm" -e "
-        cd '$SCRIPT_DIR'
-        source install/setup.bash
-        ros2 launch standard_robot_pp_ros2 standard_robot_pp_ros2.launch.py
-        bash
-    " &
-fi
+launch_in_terminal "串口通信 - Serial Comm" \
+    "ros2 launch standard_robot_pp_ros2 standard_robot_pp_ros2.launch.py"
 sleep 2
 
-# 2. 启动视觉系统
 echo "[2/4] 启动视觉系统..."
-if [ "$TERMINAL" = "gnome-terminal" ]; then
-    gnome-terminal --title="视觉系统 - Vision" -- bash -c "
-        cd '$SCRIPT_DIR'
-        source install/setup.bash
-        echo '========================================='
-        echo '视觉系统 - Vision System'
-        echo '========================================='
-        ros2 launch pb2025_vision_bringup rm_vision_reality_launch.py
-        exec bash
-    " &
-elif [ "$TERMINAL" = "xfce4-terminal" ]; then
-    xfce4-terminal --title="视觉系统 - Vision" -e "bash -c '
-        cd \"$SCRIPT_DIR\"
-        source install/setup.bash
-        echo \"视觉系统启动中...\"
-        ros2 launch pb2025_vision_bringup rm_vision_reality_launch.py
-        exec bash
-    '" &
-elif [ "$TERMINAL" = "konsole" ]; then
-    konsole --title="视觉系统 - Vision" -e bash -c "
-        cd '$SCRIPT_DIR'
-        source install/setup.bash
-        ros2 launch pb2025_vision_bringup rm_vision_reality_launch.py
-        exec bash
-    " &
-else
-    xterm -T "视觉系统 - Vision" -e "
-        cd '$SCRIPT_DIR'
-        source install/setup.bash
-        ros2 launch pb2025_vision_bringup rm_vision_reality_launch.py
-        bash
-    " &
-fi
+launch_in_terminal "视觉系统 - Vision" \
+    "ros2 launch pb2025_vision_bringup rm_vision_reality_launch.py"
 sleep 3
 
-# 3. 启动导航系统
 echo "[3/4] 启动导航系统..."
-if [ "$TERMINAL" = "gnome-terminal" ]; then
-    gnome-terminal --title="导航系统 - Navigation" -- bash -c "
-        cd '$SCRIPT_DIR'
-        source install/setup.bash
-        echo '========================================='
-        echo '导航系统 - Navigation System'
-        echo '========================================='
-        ros2 launch pb2025_nav_bringup rm_navigation_reality_launch.py world:=7fs slam:=False use_robot_state_pub:=True
-        exec bash
-    " &
-elif [ "$TERMINAL" = "xfce4-terminal" ]; then
-    xfce4-terminal --title="导航系统 - Navigation" -e "bash -c '
-        cd \"$SCRIPT_DIR\"
-        source install/setup.bash
-        echo \"导航系统启动中...\"
-        ros2 launch pb2025_nav_bringup rm_navigation_reality_launch.py world:=7fs slam:=False use_robot_state_pub:=True
-        exec bash
-    '" &
-elif [ "$TERMINAL" = "konsole" ]; then
-    konsole --title="导航系统 - Navigation" -e bash -c "
-        cd '$SCRIPT_DIR'
-        source install/setup.bash
-        ros2 launch pb2025_nav_bringup rm_navigation_reality_launch.py world:=7fs slam:=False use_robot_state_pub:=True
-        exec bash
-    " &
-else
-    xterm -T "导航系统 - Navigation" -e "
-        cd '$SCRIPT_DIR'
-        source install/setup.bash
-        ros2 launch pb2025_nav_bringup rm_navigation_reality_launch.py world:=7fs slam:=False use_robot_state_pub:=True
-        bash
-    " &
-fi
-
+launch_in_terminal "导航系统 - Navigation" \
+    "ros2 launch pb2025_nav_bringup rm_navigation_reality_launch.py world:=7fend slam:=False use_robot_state_pub:=True"
 sleep 2
 
-# 4. 启动哨兵导航控制系统
 echo "[4/4] 启动哨兵导航控制系统..."
-if [ "$TERMINAL" = "gnome-terminal" ]; then
-    gnome-terminal --title="哨兵导航控制 - Sentry Nav Ctrl" -- bash -c "
-        cd '$SCRIPT_DIR'
-        source install/setup.bash
-        echo '========================================='
-        echo '哨兵导航控制系统 - Sentry Navigation Controller'
-        echo '========================================='
-        ros2 launch sentry_nav_controller sentry_nav_real_launch.py
-        exec bash
-    " &
-elif [ "$TERMINAL" = "xfce4-terminal" ]; then
-    xfce4-terminal --title="哨兵导航控制 - Sentry Nav Ctrl" -e "bash -c '
-        cd \"$SCRIPT_DIR\"
-        source install/setup.bash
-        echo \"哨兵导航控制系统启动中...\"
-        ros2 launch sentry_nav_controller sentry_nav_real_launch.py
-        exec bash
-    '" &
-elif [ "$TERMINAL" = "konsole" ]; then
-    konsole --title="哨兵导航控制 - Sentry Nav Ctrl" -e bash -c "
-        cd '$SCRIPT_DIR'
-        source install/setup.bash
-        ros2 launch sentry_nav_controller sentry_nav_real_launch.py
-        exec bash
-    " &
-else
-    xterm -T "哨兵导航控制 - Sentry Nav Ctrl" -e "
-        cd '$SCRIPT_DIR'
-        source install/setup.bash
-        ros2 launch sentry_nav_controller sentry_nav_real_launch.py
-        bash
-    " &
-fi
-
-sleep 2
+launch_in_terminal "哨兵导航控制 - Sentry Nav Ctrl" \
+    "ros2 launch sentry_nav_controller sentry_nav_real_launch.py"
 
 echo ""
 echo "========================================"
