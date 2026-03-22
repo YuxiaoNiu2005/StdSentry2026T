@@ -67,7 +67,7 @@ sleep 3
 
 echo "[3/4] 启动导航系统..."
 launch_in_terminal "导航系统 - Navigation" \
-    "ros2 launch pb2025_nav_bringup rm_navigation_reality_launch.py world:=7fend slam:=False use_robot_state_pub:=True"
+    "ros2 launch pb2025_nav_bringup rm_navigation_reality_launch.py world:=race slam:=False use_robot_state_pub:=True"
 sleep 2
 
 echo "[4/4] 启动哨兵导航控制系统..."
